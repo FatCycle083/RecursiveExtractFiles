@@ -11,5 +11,5 @@
 **テスト環境 ( Test Configuration )**:
 * Environment ： *****
 
-**テスト環境 ( Test Configuration )**:
+**テスト内容 ( Test Case )**:
 * Test Case ： ( Pass / Fail )
