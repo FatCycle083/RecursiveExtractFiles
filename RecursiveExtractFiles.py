@@ -10,7 +10,7 @@ from CustomMessageBox import SelectResult
 class RecursiveExtractFileToolsClass():
 	
 	"""定数"""
-	APP_VERSION = "20250308_1"
+	APP_VERSION = "20250310_1"
 
 	def __init__(self, *args:tuple, **kwargs:dict, ):
 		"""_summary_
@@ -45,12 +45,19 @@ class RecursiveExtractFileToolsClass():
 
 				# 1フォルダ処理
 				try:
+					# 検索フォルダ表示
 					parent_dir_path:str = arg
+					print(f"SearchPath：")
+
+					# エスケープシーケンス回避
+					search_glob_str = glob.escape( parent_dir_path )
+					print(f"SearchPath(Escaped)：{search_glob_str}")
 					
-					# ファイル検索
-					search_glob_str:str = os.path.join( parent_dir_path, "**", "*" )
+					# ファイル検索文字列作成
+					search_glob_str:str = os.path.join( search_glob_str, "**", "*" )
 					print(f"SearchGlobRegex：{search_glob_str}")
 
+					# ファイル検索
 					found_pathes:list[str] = glob.glob( search_glob_str, recursive=True, )
 					found_pathes = [ found_path for found_path in found_pathes if os.path.isfile(found_path) and os.path.dirname(found_path)!=parent_dir_path ]
 					print(f"Found：{len(found_pathes)}")
